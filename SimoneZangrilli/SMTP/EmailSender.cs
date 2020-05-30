@@ -22,15 +22,15 @@ namespace SimoneZangrilli.SMTP
             var from = _smtpSettings.FromAddress;
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("dilillo.nico@gmail.com");
-                mail.To.Add("nicola.dilillo@icloud.com");
-                mail.Subject = "Hello World";
-                mail.Body = "<h1>Hello</h1>";
+                mail.From = new MailAddress("zangrilliwebsite@gmail.com");
+                mail.To.Add("szangrilli@remax.it");
+                mail.Subject = "stronzo";
+                mail.Body = "<h1>Nun ce capisci n'cazzo</h1>";
                 mail.IsBodyHtml = true;        
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("dilillo.nico@gmail.com", "");
+                    smtp.Credentials = new NetworkCredential("zangrilliwebsite@gmail.com", "Aoopass123");
                     //smtp.UseDefaultCredentials = false;
                     smtp.EnableSsl = true;
                     smtp.Send(mail);

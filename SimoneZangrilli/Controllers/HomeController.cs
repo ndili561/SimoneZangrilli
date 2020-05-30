@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SimoneZangrilli.Models;
 
@@ -18,19 +19,25 @@ namespace SimoneZangrilli.Controllers
         {
             emailSender = email;
         }
-        public IActionResult Index()
+        public IActionResult Index(bool? wasRedirected)
         {
+            if (wasRedirected != null)
+            {
+                TempData["displayModal"]="showmodal";
+            }
             return View();
         }
 
-        public async Task<IActionResult> Post(ContactInfo info)
+        public ActionResult Post(ContactInfo info)
         {
-            await emailSender.SendEmailAsync("dilillo.nico@gmail.com","Test","hello");
-            if (!ModelState.IsValid)
-            {
-                return RedirectToAction("Index");
-            }
-            return Ok("OK");
+            //await emailSender.SendEmailAsync("dilillo.nico@gmail.com","Test","hello");
+            //if (!ModelState.IsValid)
+            //{
+            //    return RedirectToAction("Index");
+            //}
+            //ViewBag.
+            return this.RedirectToAction("Index", new { wasRedirected = true });
+           
         }
 
         public IActionResult Privacy()

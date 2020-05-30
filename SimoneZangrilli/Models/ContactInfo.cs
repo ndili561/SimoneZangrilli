@@ -25,6 +25,7 @@ namespace SimoneZangrilli.Models
         public string Email { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Message { get; set; }
     }
 }
