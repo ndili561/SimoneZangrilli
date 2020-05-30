@@ -30,7 +30,7 @@ namespace SimoneZangrilli.SMTP
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("dilillo.nico@gmail.com", "Vivi2706?");
+                    smtp.Credentials = new NetworkCredential("dilillo.nico@gmail.com", "");
                     //smtp.UseDefaultCredentials = false;
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
