@@ -1,10 +1,14 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System.Web;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting.Internal;
+using System.Reflection;
 
 namespace SimoneZangrilli.SMTP
 {
@@ -17,23 +21,28 @@ namespace SimoneZangrilli.SMTP
 
         }
 
-        public async Task<Task> SendEmailAsync(string email, string subject, string message)
+        public async Task<Task> SendEmailAsync(string email, string message, string firstname, string lastname)
         {
-            var from = _smtpSettings.FromAddress;
+            string html = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Templates\Success.html"));
+            var body = html
+                     .Replace("{{Name}}", firstname)
+                     .Replace("{{LastName}}", lastname)
+                     .Replace("{{Email}}", email)
+                     .Replace("{{Message}}", message);
+
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("zangrilliwebsite@gmail.com");
-                mail.To.Add("szangrilli@remax.it");
-                mail.Subject = "stronzo";
-                mail.Body = "<h1>Nun ce capisci n'cazzo</h1>";
+                mail.From = new MailAddress(_smtpSettings.FromAddress);
+                mail.To.Add(_smtpSettings.ToAddress);
+                mail.Subject = "Nuovo Contatto";
+                mail.Body = body;
                 mail.IsBodyHtml = true;        
 
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                using (SmtpClient smtp = new SmtpClient(_smtpSettings.Server, _smtpSettings.Port))
                 {
-                    smtp.Credentials = new NetworkCredential("zangrilliwebsite@gmail.com", "Aoopass123");
-                    //smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(_smtpSettings.FromAddress, _smtpSettings.Password);
                     smtp.EnableSsl = true;
-                    smtp.Send(mail);
+                    await smtp.SendMailAsync(mail);
                 }
             }
 

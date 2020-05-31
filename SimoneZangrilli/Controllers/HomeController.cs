@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SimoneZangrilli.Context;
 using SimoneZangrilli.Models;
 
 namespace SimoneZangrilli.Controllers
@@ -15,9 +16,12 @@ namespace SimoneZangrilli.Controllers
     {
         public readonly SimoneZangrilli.SMTP.IEmailSender emailSender;
 
-        public HomeController(SimoneZangrilli.SMTP.IEmailSender email)
+        public readonly IRepository _repository;
+
+        public HomeController(SimoneZangrilli.SMTP.IEmailSender email, IRepository repository)
         {
             emailSender = email;
+            _repository = repository;
         }
         public IActionResult Index(bool? wasRedirected)
         {
@@ -28,14 +32,13 @@ namespace SimoneZangrilli.Controllers
             return View();
         }
 
-        public ActionResult Post(ContactInfo info)
+        public async Task<ActionResult> Post(ContactInfo info)
         {
-            //await emailSender.SendEmailAsync("dilillo.nico@gmail.com","Test","hello");
-            //if (!ModelState.IsValid)
-            //{
-            //    return RedirectToAction("Index");
-            //}
-            //ViewBag.
+            await emailSender.SendEmailAsync(info.Email, info.Message, info.FirstName,info.LastName);
+            if (ModelState.IsValid)
+            {
+                await _repository.Add(info);
+            }
             return this.RedirectToAction("Index", new { wasRedirected = true });
            
         }

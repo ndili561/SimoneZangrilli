@@ -7,6 +7,6 @@ namespace SimoneZangrilli.SMTP
 {
      public interface IEmailSender 
     {
-        Task<Task> SendEmailAsync(string email, string subject, string message);
+        Task<Task> SendEmailAsync(string email, string message, string firstname,string lastname);
     }
 }

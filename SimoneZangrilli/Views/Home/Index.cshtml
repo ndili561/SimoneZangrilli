@@ -1,6 +1,6 @@
 ﻿@model SimoneZangrilli.Models.ContactInfo
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
 @*<div class="site-blocks-cover overlay" style="background-image: url(../images/imageedit_1_2518319852.jpg);" id="home-section">
@@ -52,7 +52,7 @@
                 <p class="lead">Il mio obiettivo: farti vivere una esperienza magnifica nell’aiutarti a vendere casa!</p>
                 <br />
                 <br />
-                <p>I miei risultati valgono di più di qualunque promessa pubblicitaria!</p>
+                <p class="lead">I miei risultati valgono di più di qualunque promessa pubblicitaria!</p>
                 @*<p class="mb-4">Ipsum dolorum ab magnam facere alias ducimus nulla consequuntur blanditiis, maxime explicabo rerum maiores, odio.</p>*@
                 <p><img src="images/signature.jpg" alt="Image" class="img-fluid w-25"></p>
             </div>
@@ -367,21 +367,21 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-12 text-center">
-                <h2 class="section-title mb-3">Reach to us</h2>
+                <h2 class="section-title mb-3">Contattami</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <p class="mb-0 font-weight-bold">Address</p>
-                <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA
+            <div class="col-md-3">
+                @*<p class="mb-0 font-weight-bold">Indirizzo</p>
+                <p class="mb-4">Roma*@
             </div>
             <div class="col-md-4">
-                <p class="mb-0 font-weight-bold">Telefono</p>
-                <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+                <p class="mb-0 font-weight-bold talign-right">Telefono</p>
+                <p class="mb-4">3497744267</p>
             </div>
             <div class="col-md-4">
-                <p class="mb-0 font-weight-bold">Email Address</p>
-                <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+                <p class="mb-0 font-weight-bold talign-right">Email</p>
+                <p class="mb-4">szangrilli@remax.it</p>
             </div>
         </div>
         @*<div class="row mb-5 mt-5">
@@ -394,16 +394,16 @@
 
                 <form method="post" asp-controller="home" asp-action="post" class="p-5 bg-white">
 
-                    <h2 class="h4 text-black mb-5">Contact Form</h2>
+                    <h2 class="h4 text-black mb-5">Modulo di Contatto</h2>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <label class="text-black" asp-for="FirstName">First Name</label>
+                            <label class="text-black" asp-for="FirstName">Nome</label>
                             <input type="text" id="fname" asp-for="FirstName" class="form-control">
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
                         <div class="col-md-6">
-                            <label class="text-black" asp-for="LastName">Last Name</label>
+                            <label class="text-black" asp-for="LastName">Cognome</label>
                             <input type="text" id="lname" asp-for="LastName" class="form-control">
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
@@ -421,7 +421,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <label class="text-black" asp-for="Message">Message</label>
+                            <label class="text-black" asp-for="Message">Messaggio</label>
                             @Html.TextAreaFor(c => c.Message, new { @class = "form-control", @cols = 30, @rows = 7 })
                             <span asp-validation-for="Message" class="text-danger"></span>
                         </div>
@@ -429,7 +429,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Send Message" class="btn btn-primary btn-md text-white">
+                            <input type="submit" value="Invia" class="btn btn-primary btn-md text-white">
                         </div>
                     </div>
 
@@ -447,17 +447,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="exampleModalLabel">Conferma</h5>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button>*@
             </div>
             <div class="modal-body">
-                ...
+               Grazie, ho ricevuto i tuoi dati e ti contattero' presto
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>              
             </div>
         </div>
     </div>

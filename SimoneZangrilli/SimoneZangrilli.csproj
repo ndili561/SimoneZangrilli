@@ -25,4 +25,11 @@
     <PackageReference Include="NETCore.MailKit" Version="2.0.2" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <None Update="Templates\Success.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -20,8 +20,7 @@ namespace SimoneZangrilli.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Inserisci una email valida")]
-        [RegularExpression(@"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$", 
-            ErrorMessage = "Inserisci una email valida")]
+        [RegularExpression(@"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$",ErrorMessage = "Inserisci una email valida")]
         public string Email { get; set; }
 
         [Required]

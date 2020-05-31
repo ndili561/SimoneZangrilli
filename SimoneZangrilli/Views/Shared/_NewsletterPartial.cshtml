@@ -1,0 +1,24 @@
+﻿@model SimoneZangrilli.Models.ContactInfo
+<div class="col-md-5">
+    <h2 class="footer-heading mb-4">About Us</h2>
+    <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+
+    <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
+    <form action="#" method="post" class="footer-subscribe">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control border-secondary text-white bg-transparent" asp-for="Email" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
+
+            <div class="input-group-append">
+                <button class="btn btn-white text-black" type="button" id="button-addon2">Send</button>
+            </div>
+
+        </div>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </form>
+
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
